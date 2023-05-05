@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
+    @articles = Article.find(params[:id])
   end
 
   # GET /articles/new
@@ -21,7 +22,12 @@ class ArticlesController < ApplicationController
 
   # POST /articles or /articles.json
   def create
-    @article = Article.new(article_params)
+    @article = Article.new(
+      name: params[:name],
+      account: params[:account],
+      email: params[:email],
+      title: params[:title]
+      content: params[:content])
 
     respond_to do |format|
       if @article.save
@@ -36,6 +42,11 @@ class ArticlesController < ApplicationController
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
+    # 対象のレコードを探す
+    @article = Article.find(params[:id])
+    # 探してきたレコードに対して変更を行う
+    @article.update!(article_params)
+
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
@@ -49,7 +60,10 @@ class ArticlesController < ApplicationController
 
   # DELETE /articles/1 or /articles/1.json
   def destroy
-    @article.destroy
+    # 対象のレコードを探す
+    @article = Article.find(params[:id])
+    # 探してきたレコードを削除する
+    @article.destroy!
 
     respond_to do |format|
       format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
