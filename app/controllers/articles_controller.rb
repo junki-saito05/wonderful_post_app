@@ -50,14 +50,10 @@ class ArticlesController < ApplicationController
 
   # DELETE /articles/1 or /articles/1.json
   def destroy
-    # 対象のレコードを探す
-    @article = Article.find(params[:id])
     # 探してきたレコードを削除する
-    @article.destroy!
+    @article.destroy
+    edirect_to articles_url, notice: "Article was successfully destroyed."
 
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
