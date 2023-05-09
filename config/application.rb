@@ -43,6 +43,10 @@ module WonderfulPostApp
       g.test_framework false
     end
     config.middleware.use ActionDispatch::Flash
+
+    config.i18n.default_locale = :ja
+    config.time_zone = "Asia/Tokyo"
+
   end
 
 end
