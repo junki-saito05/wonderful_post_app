@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to @article, notice: "Article was successfully created."
+      redirect_to @article, notice: "#{t('activerecord.models.article')}を作成"
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,10 +32,12 @@ class ArticlesController < ApplicationController
 
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
-    # 対象のレコードを探す
-    @article = Article.find(params[:id])
-    # 探してきたレコードに対して変更を行う
-    @article.update!(article_params)
+    if @article.update(article_params)
+      redirect_to @article, notice: "#{t('activerecord.models.article')}を編集"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
     respond_to do |format|
       if @article.update(article_params)
@@ -46,13 +48,12 @@ class ArticlesController < ApplicationController
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
-  end
 
   # DELETE /articles/1 or /articles/1.json
   def destroy
     # 探してきたレコードを削除する
     @article.destroy
-    edirect_to articles_url, notice: "Article was successfully destroyed."
+    edirect_to articles_url, notice: "#{t('activerecord.models.article')}を削除"
 
     end
   end
