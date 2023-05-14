@@ -61,7 +61,6 @@ class ArticlesController < ApplicationController
     @article.destroy
     edirect_to articles_url, notice: "#{t('activerecord.models.article')}を削除"
 
-    end
   end
 
   private
