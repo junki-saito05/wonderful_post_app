@@ -1,0 +1,2 @@
+class AddUserIdToArticle < ApplicationRecord
+end
