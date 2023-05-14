@@ -7,3 +7,10 @@ ja:
       article:
         title: タイトル
         content: 本文
+   views:
+      pagination:
+       first: '最初'
+       last: '最後'
+       previous: '前'
+       next: '次'
+       truncate: '...'
