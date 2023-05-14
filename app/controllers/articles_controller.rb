@@ -5,7 +5,8 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
-    @article = Article.all
+    #@article = Article.all
+    @articles = Article.all.page params[:page]
   end
 
   # GET /articles/1 or /articles/1.json

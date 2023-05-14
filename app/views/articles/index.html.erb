@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>記事</h1>
+ <%= paginate @articles %>
 
 <%= link_to '記事作成', new_article_path, class: "btn btn-info" %>
 
